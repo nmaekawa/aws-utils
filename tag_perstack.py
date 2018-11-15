@@ -31,7 +31,7 @@ if __name__ == '__main__':
     parser.add_argument(
         '-t', '--tags',
         required=False,
-        default='project,cluster,service',
+        default='project,cluster,service,Name',
         help='comma separated list of tags to be copied')
     parser.add_argument(
         '--quiet',
@@ -66,7 +66,7 @@ if __name__ == '__main__':
             print('found instances in stack(s): {}'.format(set(stack_names)))
 
     for instance in stack_instances:
-        # adding stack name because nested cf-stacks get their own stack-name
+        # tagging instance with stack name because nested cf-stacks get their own stack-name
         tags = [{'Key': 'stack', 'Value': stack}]
         instance.create_tags(Tags=tags)
 
